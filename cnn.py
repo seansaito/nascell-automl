@@ -2,9 +2,14 @@ import tensorflow as tf
 
 class CNN():
     def __init__(self, num_input, num_classes, cnn_config):
+        print('CNN config is: {}'.format(cnn_config))
         cnn = [c[0] for c in cnn_config]
         cnn_num_filters = [c[1] for c in cnn_config]
         max_pool_ksize = [c[2] for c in cnn_config]
+
+        print('Conv kernels: {}'.format(cnn))
+        print('Filters: {}'.format(cnn_num_filters))
+        print('Max pool kernels: {}'.format(max_pool_ksize))
 
         self.X = tf.placeholder(tf.float32,
                                 [None, num_input], 
