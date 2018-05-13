@@ -25,11 +25,10 @@ class Reinforce():
         self.sess.run(tf.variables_initializer(var_lists))
 
     def get_action(self, state):
+        policy_outputs = self.sess.run(self.action_scores, {self.states: state})
+        print('Policy outputs: {}'.format(policy_outputs))
+        print('Policy output shape: {}'.format(policy_outputs.shape))
         return self.sess.run(self.predicted_action, {self.states: state})
-        if random.random() < self.exploration:
-            return np.array([[random.sample(range(1, 35), 4*self.max_layers)]])
-        else:
-            return self.sess.run(self.predicted_action, {self.states: state})
 
     def create_variables(self):
         with tf.name_scope("model_inputs"):
